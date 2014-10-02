@@ -9,8 +9,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post users_path, user: { name: "", email: "user@invalid", 
         password: "foo", password_confirmation: "bar" }
     end
-    # Checks that a failed submission renders the new action
+    # Checks that a failed submission renders new action and displays errors
     assert_template 'users/new'
+    assert_select 'div#error_explanation'
+    assert_select 'div.field_with_errors'
   end
 
   # Checks that a correct signup creates a new user
@@ -23,7 +25,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post_via_redirect users_path, user: {name: name, email: email, 
         password: password, password_confirmation: password }
     end
-    # Checks that the valid submission renders the show action
+    # Checks that valid submission renders show action and displays flash
     assert_template 'users/show'
+    assert_not flash.empty?
   end
 end
