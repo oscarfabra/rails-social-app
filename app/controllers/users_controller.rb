@@ -10,9 +10,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      # Handle a successful save.
-    else
+    if @user.save         # If user successfully created
+      flash[:success] = "Welcome to the Sample App!"
+      redirect_to @user   # Same as user_url(@user), rails infers it
+    else                  # If invalid sign up, redirects to same page
       render 'new'
     end
   end

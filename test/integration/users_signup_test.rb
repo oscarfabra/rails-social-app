@@ -1,7 +1,29 @@
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  # Verifies that no user is signed up when invalid info is posted
+  test "invalid signup information" do
+    get signup_path
+    assert_no_difference 'User.count' do
+      post users_path, user: { name: "", email: "user@invalid", 
+        password: "foo", password_confirmation: "bar" }
+    end
+    # Checks that a failed submission renders the new action
+    assert_template 'users/new'
+  end
+
+  # Checks that a correct signup creates a new user
+  test "valid signup information" do
+    get signup_path
+    name = "Example User"
+    email = "user@example.com"
+    password = "foobarbaz"
+    assert_difference 'User.count', 1 do
+      post_via_redirect users_path, user: {name: name, email: email, 
+        password: password, password_confirmation: password }
+    end
+    # Checks that the valid submission renders the show action
+    assert_template 'users/show'
+  end
 end
