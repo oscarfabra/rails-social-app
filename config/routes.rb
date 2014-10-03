@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
-  
+
   # Routes for static pages
-  root 'static_pages#home'
-  get 'help' => 'static_pages#help'
-  get 'about' => 'static_pages#about'
-  get 'contact' => 'static_pages#contact'
-  get 'signup' => 'users#new'
+  root              'static_pages#home'
+  get     'help'    =>  'static_pages#help'
+  get     'about'   =>  'static_pages#about'
+  get     'contact' =>  'static_pages#contact'
+  get     'signup'  =>  'users#new'
+
+  # Routes for sessions
+  get     'login'   =>  'sessions#new'
+  post    'login'   =>  'sessions#create'
+  delete  'logout'  =>  'sessions#destroy'
 
   # Routes for the users resource
   resources :users
