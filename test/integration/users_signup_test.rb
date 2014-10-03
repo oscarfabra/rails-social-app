@@ -28,5 +28,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     # Checks that valid submission renders show action and displays flash
     assert_template 'users/show'
     assert_not flash.empty?
+    # Checks that user has been logged in calling helper method
+    assert is_logged_in?
   end
 end
