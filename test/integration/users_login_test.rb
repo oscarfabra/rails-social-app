@@ -24,20 +24,35 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert flash.empty?
   end
 
-  test "login with valid information" do
+  test "login with valid information followed by logout" do
     # Visit the login path
     get login_path
     #Post valid information to the sessions path
     post login_path, session: { email: @user.email, password: 'password' }
+    # Check that user is logged in
+    assert is_logged_in?
     # Check the right redirect target
     assert_redirected_to @user
     follow_redirect!
     assert_template 'users/show'
-    # Verify that the login link disappears
+    # Verify that all login links disappear
     assert_select "a[href=?]", login_path, count: 0
     # Verify that a logout link appears
     assert_select "a[href=?]", logout_path
     # Verify that a profile link appears
     assert_select "a[href=?]", user_path(@user)
+    # Verify that user is logged out
+    delete logout_path
+    assert_not is_logged_in?
+    # Verify that user is redirected to root url
+    assert_redirected_to root_url
+    # Visit root url
+    follow_redirect!
+    # Verify that a login link appears
+    assert_select "a[href=?]", login_path
+    # Verify that all logout link disappear
+    assert_select "a[href=?]", logout_path, count: 0
+    # Verify that all profile links disappear
+    assert_select "a[href=?]", user_path(@user), count: 0
   end
 end
