@@ -6,4 +6,13 @@ class User < ActiveRecord::Base
   uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 8 }
+
+  # Class method that returns the hash digest of the given string
+  def User.digest(string)
+    # Uses the minimum cost parameter in tests and a normal (high) cost param
+    # in production
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+    BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
 end
