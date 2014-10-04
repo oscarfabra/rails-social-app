@@ -9,13 +9,27 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save         # If user successfully created
-      log_in @user        # Logs in the user by default
+    @user = User.new(user_params) # Uses user_params private method
+    if @user.save                 # If user successfully created
+      log_in @user                # Logs in the user by default
       flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user   # Same as user_url(@user), rails infers it
-    else                  # If invalid sign up, redirects to same page
+      redirect_to @user           # Same as user_url(@user), rails infers it
+    else                          # If invalid sign up, redirects to same page
       render 'new'
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])    
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render 'edit'
     end
   end
 
