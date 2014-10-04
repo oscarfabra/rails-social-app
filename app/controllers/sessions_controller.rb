@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   # Logs user out and redirects it to the home page
   def destroy
-    log_out
+    log_out if logged_in?   # To avoid user logging out from multiple windows
     redirect_to root_url
   end
 end

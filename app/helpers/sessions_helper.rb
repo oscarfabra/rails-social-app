@@ -19,10 +19,10 @@ module SessionsHelper
   def current_user
     # If session of user id exists
     if(user_id = session[:user_id])
-      @current_user ||= User.find_by(id: id)      # Get the user by id
+      @current_user ||= User.find_by(id: user_id)
     # If there's a cookie in the browser for this user
     elsif (user_id = cookies.signed[:user_id])
-      user = User.find_by(id: user_id)            # Get the user by id
+      user = User.find_by(id: user_id)
       # If user was found and is authenticated, log it in and save current_user
       if user && user.authenticated?(cookies[:remember_token])
         log_in user
@@ -36,8 +36,16 @@ module SessionsHelper
     !current_user.nil?
   end
 
-  # Logs out given user.
+  # Forgets a persistent session.
+  def forget(user)
+    user.forget
+    cookies.delete(:user_id)
+    cookies.delete(:remember_token)
+  end
+
+  # Logs out the current user.
   def log_out
+    forget(current_user)
     session.delete(:user_id)
     @current_user = nil
   end
