@@ -57,4 +57,18 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # Verify that all profile links disappear
     assert_select "a[href=?]", user_path(@user), count: 0
   end
+
+  test "login with remembering" do
+    # Calls helper method if options hash
+    log_in_as(@user, remember_me: '1')
+    # Checks that remember token is set in the cookies
+    assert_not_nil cookies['remember_token']
+  end
+
+  test "login without remembering" do
+    # Calls helper method if options hash
+    log_in_as(@user, remember_me: '0')
+    # Checks that remember token isn't set in the cookies
+    assert_nil cookies['remember_token']
+  end
 end
