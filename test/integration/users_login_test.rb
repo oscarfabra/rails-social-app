@@ -62,7 +62,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # Calls helper method if options hash
     log_in_as(@user, remember_me: '1')
     # Checks that remember token is set in the cookies
-    assert_not_nil cookies['remember_token']
+    assert_equal assigns(:user).remember_token, cookies['remember_token']
   end
 
   test "login without remembering" do
