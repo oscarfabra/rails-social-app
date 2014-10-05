@@ -7,10 +7,13 @@ class SessionsController < ApplicationController
     password = params[:session][:password]
     @user = User.find_by(email: email)        # Utilizes an instance variable
     if @user && @user.authenticate(password)
+      # Logs in user
       log_in @user
+      # Whether to remember the user or not
       remember_user = params[:session][:remember_me]
       (remember_user == '1') ? remember(@user) : forget(@user)
-      redirect_to @user
+      # Redirects user to previously intended page if any
+      redirect_back_or @user
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
