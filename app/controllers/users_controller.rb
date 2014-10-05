@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
 
   # Requires user to be logged in before edit or update actions
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update]
 
   # Requires the correct user before edit or update actions
   before_action :correct_user, only: [:edit, :update]
+
+  def index
+    @users = User.all
+  end
 
   def show
     @user = User.find(params[:id])

@@ -12,6 +12,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should redirect index when not logged in" do
+    get :index                      # Visit /users
+    assert_redirected_to login_url  # redirect user to log in
+  end
+
   test "should redirect edit when not logged in" do
     get :edit, id: @user
     assert_redirected_to login_url
