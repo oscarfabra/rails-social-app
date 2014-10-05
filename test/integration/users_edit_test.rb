@@ -7,6 +7,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "unsuccessful edit" do
+    # Logs in a user
+    log_in_as(@user)
     # Visit the edit path of given user
     get edit_user_path(@user)
     # Make an update with invalid information
@@ -17,6 +19,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "successful edit" do
+    # Logs in a user
+    log_in_as(@user)
     # Visit the edit path of user
     get edit_user_path(@user)
     # Make an update with valid information
