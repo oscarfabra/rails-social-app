@@ -3,18 +3,35 @@ require 'test_helper'
 class UsersIndexTest < ActionDispatch::IntegrationTest
   
   def setup
-    @user = users(:michael)
+    @admin = users(:michael)
+    @non_admin = users(:archer)
   end
 
-  test "users index should include pagination" do
-    # Log in as given user
-    log_in_as(@user)
+  test "index as admin including pagination and delete links" do
+    # Log in as an admin
+    log_in_as(@admin)
     # Visit users index
     get users_path
-    # Verify that there's pagination and users' names are displayed
+    # Verify that there's pagination
     assert_select 'div.pagination'
-    User.paginate(page: 1).each do |user|
+    # Checks first page looking for user names and delete links
+    first_page_of_users = User.paginate(page: 1)
+    first_page_of_users.each do |user|
       assert_select 'a', user.name
     end
+    assert_select 'a', text: 'delete'
+    # Selects first user on page and checks that it deletes it
+    user = first_page_of_users.first
+    assert_difference 'User.count', -1 do
+      delete user_path(user)
+    end
+  end
+
+  test "index as non-admin" do
+    # Log in as a non-admin user
+    log_in_as(@non_admin)
+    # Visits users list and checks there's no delete link
+    get users_path
+    assert_select 'a', text: 'delete', count: 0
   end
 end
