@@ -24,6 +24,11 @@ class ActiveSupport::TestCase
     end
   end
 
+  # Returns true if forwarding url is the default
+  def forwarding_url_is_empty?
+     session[:forwarding_url].nil?
+  end
+
   # Private methods
   private
     

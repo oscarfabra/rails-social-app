@@ -23,7 +23,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user)
     # Log in user
     log_in_as(@user)
-    # Verify that user is redirected to its own edit path
+    # Verify that user is redirected to its edit path
     assert_redirected_to edit_user_path(@user)
     # Make an update with valid information
     name = "Foo Bar"
@@ -38,5 +38,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal @user.name, name
     assert_equal @user.email, email
+    # Checks that on subsequent login attempts, forwarding URL is the default
+    assert forwarding_url_is_empty?
   end
 end
