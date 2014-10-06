@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'account_activations/edit'
+
   # Routes for static pages
   root              'static_pages#home'
   get     'help'    =>  'static_pages#help'
@@ -14,6 +16,9 @@ Rails.application.routes.draw do
 
   # Routes for the users resource
   resources :users
+
+  # Routes for account activations
+  resources :account_activations, only: [:edit]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

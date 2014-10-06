@@ -1,16 +1,17 @@
 class User < ActiveRecord::Base
 
   # Attributes additional to the database model
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :activation_token
 
   # User validations
-  before_save { self.email.downcase! }
-  validates :name, presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  before_save   :downcase_email
+  before_create :create_activation_digest
+  validates     :name, presence: true, length: { maximum: 50 }
+  VALID_EMAIL_REGEX =  /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX }, 
   uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, length: { minimum: 8 }, allow_blank: true
+  validates           :password, length: { minimum: 8 }, allow_blank: true
 
   # Class methods
   class << self
@@ -46,4 +47,18 @@ class User < ActiveRecord::Base
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  # Private methods
+  private
+
+    # Converts email to all lower-case.
+    def downcase_email
+      self.email.downcase!      
+    end
+
+    # Creates and assigns the activation token and digest.
+    def create_activation_digest
+      self.activation_token = User.new_token
+      self.activation_digest = User.digest(self.activation_token)
+    end
 end
