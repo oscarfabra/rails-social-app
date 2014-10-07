@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
+
+  def setup
+    ActionMailer::Base.deliveries.clear    
+  end
   
   # Verifies that no user is signed up when invalid info is posted
   test "invalid signup information" do
@@ -22,13 +26,31 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     email = "user@example.com"
     password = "foobarbaz"
     assert_difference 'User.count', 1 do
-      post_via_redirect users_path, user: {name: name, email: email, 
+      post users_path, user: {name: name, email: email, 
         password: password, password_confirmation: password }
     end
-    # Checks that valid submission renders show action and displays flash
-    # assert_template 'users/show'
-    # assert_not flash.empty?
-    # Checks that user has been logged in calling helper method
-    # assert is_logged_in?
+    # Verify that exactly one message is delivered
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    # Access @user variable from Users controller's create action
+    user = assigns(:user)
+    assert_not user.activated?
+    # Try to log in before activation and verify that user is not logged in
+    log_in_as(user)
+    assert_not is_logged_in?
+    # Send invalid activation token and verify user is not logged in
+    get edit_account_activation_path("invalid token")
+    assert_not is_logged_in?
+    # Valid token, wrong email. Verify user is not logged in.
+    get edit_account_activation_path(user.activation_token, email: 'wrong')
+    assert_not is_logged_in?
+    # Valid activation token.
+    get edit_account_activation_path(user.activation_token, email: user.email)
+    assert user.reload.activated?
+    follow_redirect!
+    # Checks that show action is rendered
+    assert_template 'users/show'
+    assert_not flash.empty?
+    # Checks that user has been logged in
+    assert is_logged_in?
   end
 end

@@ -2,10 +2,8 @@ class UsersController < ApplicationController
 
   # Requires user to be logged in before edit or update actions
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-
   # Requires the correct user before edit or update actions
   before_action :correct_user, only: [:edit, :update]
-
   # Requires user to be admin before destroy action
   before_action :admin_user, only: :destroy
 
@@ -25,7 +23,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) # Uses user_params private method
     if @user.save                 # If user successfully created
-      UserMailer.account_activation(@user).deliver
+      @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
     else                          # If invalid sign up, redirects to same page
