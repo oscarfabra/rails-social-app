@@ -8,10 +8,11 @@ class User < ActiveRecord::Base
   before_create :create_activation_digest
   validates     :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX =  /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX }, 
-  uniqueness: { case_sensitive: false }
+  validates     :email, presence: true, 
+    format: {with: VALID_EMAIL_REGEX }, 
+    uniqueness: { case_sensitive: false }
   has_secure_password
-  validates           :password, length: { minimum: 8 }, allow_blank: true
+  validates     :password, length: { minimum: 8 }, allow_blank: true
 
   # Class methods
   class << self
@@ -50,8 +51,7 @@ class User < ActiveRecord::Base
 
   # Activates a user account.
   def activate
-    update_attribute(:activated, true)
-    update_attribute(:activated_at, Time.zone.now)    
+    update_columns(activated: true, activated_at: Time.zone.now)
   end
 
   # Sends activation email.
@@ -62,8 +62,8 @@ class User < ActiveRecord::Base
   # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = User.new_token
-    update_attribute(:reset_digest, User.digest(reset_token))
-    update_attribute(:reset_sent_at, Time.zone.now)
+    update_columns(reset_digest: User.digest(reset_token), 
+      reset_sent_at: Time.zone.now)
   end
 
   # Sends password reset email.

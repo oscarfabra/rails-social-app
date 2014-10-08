@@ -32,17 +32,55 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_template 'password_resets/edit'
     assert_select "input#email[name=email][type=hidden][value=?]", user.email
     # Invalid password & confirmation
-    patch password_reset_path(user.reset_token), email: user.email, user: 
-    { password: "foobarbaz", password_confirmation: "barquuoux" }
+    patch password_reset_path(user.reset_token), 
+    email: user.email, 
+    user: 
+    { 
+        password: "foobarbaz", 
+        password_confirmation: "barquuoux" 
+    }
     assert_select 'div#error_explanation'
     # Blank password & confirmation
-    patch password_reset_path(user.reset_token), email: user.email, user:
-    { password: "", password_confirmation: ""}
+    patch password_reset_path(user.reset_token), 
+    email: user.email, 
+    user:
+    { 
+        password: "", 
+        password_confirmation: ""
+    }
     assert_not_nil flash.now
     assert_template 'password_resets/edit'
     # Valid password & confirmation
-    patch_via_redirect password_reset_path(user.reset_token), email: user.email, 
-    user: { password: "foobarbaz", password_confirmation: "foobarbaz"}
+    patch_via_redirect password_reset_path(user.reset_token), 
+    email: user.email, 
+    user: 
+    { 
+        password: "foobarbaz", 
+        password_confirmation: "foobarbaz"
+    }
     assert_template 'users/show'
+  end
+
+  test "expired token" do
+    # Visit retrieve password page
+    get new_password_reset_path
+    # Perform a valid submission
+    post password_resets_path, password_reset: { email: @user.email }
+    # Get the user from the create action
+    @user = assigns(:user)
+    # Update reset_sent_at user's attribute to 25 hours ago
+    @user.update_attribute(:reset_sent_at, 25.hours.ago)
+    patch password_reset_path(@user.reset_token), 
+    email: @user.email, 
+    user:
+    {
+        password: "foobarbaz",
+        password_confirmation: "foobarbaz"
+    }
+    # Verify that user is redirected to other page
+    assert_response :redirect
+    follow_redirect!
+    # Verify that the page contains the word "expired"
+    assert_match /Expired|expired/i, response.body
   end
 end
