@@ -28,7 +28,7 @@ class MicropostsController < ApplicationController
 
     # Uses strong parameters for building a micropost.
     def micropost_params
-      params.require(:micropost).permit(:content)
+      params.require(:micropost).permit(:content, :picture)
     end
 
     # Decides whether user is the creator of micropost.
