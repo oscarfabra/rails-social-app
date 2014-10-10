@@ -6,10 +6,16 @@ class User < ActiveRecord::Base
 
   # Has many microposts
   has_many :microposts, dependent: :destroy
-  # Has many active relationships (following)
+  # Has many active relationships (followings)
   has_many :active_relationships, class_name: "Relationship", 
   foreign_key: "follower_id", dependent: :destroy
-
+  # Has many followings (followeds) through the active_relationship followeds
+  has_many :following, through: :active_relationships, source: :followed
+  # Has many passive relationships (followers)
+  has_many :passive_relationships, class_name: "Relationship", 
+  foreign_key: "followed_id", dependent: :destroy
+  # Has many followers through the passive_relationship followers
+  has_many :followers, through: :passive_relationships, source: :follower
 
   #----------------------------------------------------------------------------
   # Attributes (additional to the database model)
@@ -111,6 +117,22 @@ class User < ActiveRecord::Base
   def feed
     # This is preliminary.
     Micropost.where("user_id = ?", id)
+  end
+
+  # Follows a user.
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+
+  # Unfollows a user.
+  def unfollow(other_user)
+    relationship = active_relationships.find_by(followed_id: other_user.id)
+    relationship.destroy
+  end
+
+  # Returns true if this user is following the other user.
+  def following?(other_user)
+    following.include?(other_user)
   end
 
   #----------------------------------------------------------------------------
