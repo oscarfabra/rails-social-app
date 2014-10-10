@@ -1,11 +1,25 @@
 class Micropost < ActiveRecord::Base
 
+  #----------------------------------------------------------------------------
+  # Associations
+  #----------------------------------------------------------------------------
+
   # Belongs to a user
   belongs_to :user
-  # Order by descending order of created_at
+  
+  #----------------------------------------------------------------------------
+  # Attributes (additional to the database model)
+  #----------------------------------------------------------------------------
+
+  # Scope to order by descending order of created_at
   default_scope -> { order('created_at DESC') }
   # Uploads images
   mount_uploader :picture, PictureUploader
+
+  #----------------------------------------------------------------------------
+  # Validations
+  #----------------------------------------------------------------------------
+
   # Requires user_id attribute to be present
   validates :user_id, presence: true
   # Content should be present and no greater than 140 charaacters long
@@ -13,7 +27,10 @@ class Micropost < ActiveRecord::Base
   # Validaates picture size before create.
   validate :picture_size
 
+  #----------------------------------------------------------------------------
   # Private methods
+  #----------------------------------------------------------------------------
+  
   private
 
     # Determines whether picture as less than 1 MB.

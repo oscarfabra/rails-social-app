@@ -1,23 +1,47 @@
 class User < ActiveRecord::Base
 
+  #----------------------------------------------------------------------------
+  # Associations
+  #----------------------------------------------------------------------------
+
   # Has many microposts
   has_many :microposts, dependent: :destroy
+  # Has many active relationships (following)
+  has_many :active_relationships, class_name: "Relationship", 
+  foreign_key: "follower_id", dependent: :destroy
 
-  # Attributes additional to the database model
+
+  #----------------------------------------------------------------------------
+  # Attributes (additional to the database model)
+  #----------------------------------------------------------------------------
+
+  # tokens accessors
   attr_accessor :remember_token, :activation_token, :reset_token
 
-  # User validations
+  #----------------------------------------------------------------------------
+  # Validations
+  #----------------------------------------------------------------------------
+
+  # Down-cases email before saving it in the db
   before_save   :downcase_email
+  # Creates activation digest before creating the user
   before_create :create_activation_digest
+  # Requires name before create action
   validates     :name, presence: true, length: { maximum: 50 }
+  # Email should be present and match the given regex
   VALID_EMAIL_REGEX =  /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates     :email, presence: true, 
     format: {with: VALID_EMAIL_REGEX }, 
     uniqueness: { case_sensitive: false }
+  # Password should be secure
   has_secure_password
+  # Password length should be at least 8, blanks allowed (for testing)
   validates     :password, length: { minimum: 8 }, allow_blank: true
 
+  #----------------------------------------------------------------------------
   # Class methods
+  #----------------------------------------------------------------------------
+
   class << self
     # Returns the hash digest of the given string
     def digest(string)
@@ -33,6 +57,10 @@ class User < ActiveRecord::Base
       SecureRandom.urlsafe_base64
     end
   end
+
+  #----------------------------------------------------------------------------
+  # Public methods
+  #----------------------------------------------------------------------------
 
   # Remembers a user in the database for use in persistent sessions.
   def remember
@@ -85,7 +113,10 @@ class User < ActiveRecord::Base
     Micropost.where("user_id = ?", id)
   end
 
+  #----------------------------------------------------------------------------
   # Private methods
+  #----------------------------------------------------------------------------
+
   private
 
     # Converts email to all lower-case.
