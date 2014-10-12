@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   delete  'logout'  =>  'sessions#destroy'
   
   # Routes for the users resource
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   # Routes for account activations
   resources :account_activations, only: [:edit]
@@ -23,6 +27,9 @@ Rails.application.routes.draw do
 
   # Routes for the microposts resource
   resources :microposts, only: [:create, :destroy]
+
+  # Routes for the relationships resource
+  resources :relationships, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
