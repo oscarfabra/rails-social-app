@@ -1,11 +1,21 @@
 class UsersController < ApplicationController
 
-  # Requires user to be logged in before edit or update actions
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  #----------------------------------------------------------------------------
+  # Validations
+  #----------------------------------------------------------------------------
+
+  # Requires user to be logged in before several actions
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, 
+    :following, :followers]
   # Requires the correct user before edit or update actions
   before_action :correct_user, only: [:edit, :update]
   # Requires user to be admin before destroy action
   before_action :admin_user, only: :destroy
+
+
+  #----------------------------------------------------------------------------
+  # Public methods (actions)
+  #----------------------------------------------------------------------------
 
   def index
     # Displays only activated users
@@ -54,7 +64,24 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  #----------------------------------------------------------------------------
   # Private methods
+  #----------------------------------------------------------------------------
+
   private
 
     def user_params
