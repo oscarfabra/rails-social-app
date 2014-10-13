@@ -1,7 +1,15 @@
 class RelationshipsController < ApplicationController
+
+  #----------------------------------------------------------------------------
+  # Validations
+  #----------------------------------------------------------------------------
   
   # Requires user to be logged in before any action
   before_action :logged_in_user
+
+  #----------------------------------------------------------------------------
+  # Public methods (actions)
+  #----------------------------------------------------------------------------
 
   def create    
     # Finds user to follow
