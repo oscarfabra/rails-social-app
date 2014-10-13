@@ -1,5 +1,9 @@
 class StaticPagesController < ApplicationController
   
+  #----------------------------------------------------------------------------
+  # Public methods (actions)
+  #----------------------------------------------------------------------------
+
   def home
     # Returns micropost object and feed items to populate home view.
     if logged_in?

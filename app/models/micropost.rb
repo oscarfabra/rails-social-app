@@ -28,6 +28,18 @@ class Micropost < ActiveRecord::Base
   validate :picture_size
 
   #----------------------------------------------------------------------------
+  # Class methods
+  #----------------------------------------------------------------------------
+
+  # Returns list of microposts of followed users plus given user's microposts
+  def Micropost.from_users_followed_by(user)
+    following_ids = "SELECT followed_id FROM relationships 
+      WHERE follower_id = :user_id"
+    where("user_id IN (#{following_ids}) OR user_id = :user_id", 
+      user_id: user)
+  end
+
+  #----------------------------------------------------------------------------
   # Private methods
   #----------------------------------------------------------------------------
   
