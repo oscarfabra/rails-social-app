@@ -6,6 +6,8 @@
  *-------------------------------------------*/
 
 $gray-medium-light: #eaeaea;
+$purple: #9966FF;
+$purpleDark: #5C3D99;
 
 @mixin box_sizing 
 {
@@ -38,6 +40,7 @@ html
 
 body
 {
+	font-family: 'Roboto', sans-serif;
 	padding-top: 60px;
 }
 
@@ -109,7 +112,7 @@ p
 	font-weight: bold;
 	&:hover
 	{
-		color: $gray-light;
+		color: $gray-lighter;
 		text-decoration: none;		
 	}
 }
@@ -127,10 +130,7 @@ footer
 	a
 	{
 		color: $gray;
-		&:hover
-		{
-			color: $gray-darker;
-		}
+		&:hover { color: $gray-darker; }
 	}
 	small
 	{
@@ -138,6 +138,16 @@ footer
 		signature
 		{
 			font-family: 'Pacifico', sans-serif;
+			font-size: 1.2em;
+			a
+			{
+				color: $purple;
+				&:hover 
+				{ 
+					color: $purpleDark;
+					text-decoration: none; 
+				}
+			}
 		}
 	}
 	ul
