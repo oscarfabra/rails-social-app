@@ -135,7 +135,7 @@ footer
 	small
 	{
 		float: left;
-		signature
+		.signature
 		{
 			font-family: 'Pacifico', sans-serif;
 			font-size: 1.2em;
@@ -159,6 +159,33 @@ footer
 			float: left;
 			margin-left: 15px;
 		}
+	}
+}
+
+/*---------------------------------------------
+ *  CUSTOMIZES THE LANDING PAGE
+ *-------------------------------------------*/
+
+.slider
+{
+	.slide
+	{
+		background-position: center;
+		background-size: cover;
+		height: 500px !important;
+		width: 100% !important;
+	}
+	#slide-1
+	{
+		background-image: url('/assets/landing-1.png');
+	}
+	#slide-2
+	{
+		background-image: url('/assets/landing-2.png');
+	}
+	#slide-3
+	{
+		background-image: url('/assets/landing-3.png');
 	}
 }
 
