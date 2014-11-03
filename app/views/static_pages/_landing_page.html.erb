@@ -1,7 +1,8 @@
 <% provide(:title, "Ruby 2 and Rails 4 Web App" ) %>
 
+<!-- Slider Section -->
 <div class="slider">
-
+  <!-- Slide 1 -->
   <div class="slide active-slide" id="slide-1">
     <div class="container">
       <div class="row">
@@ -13,41 +14,57 @@
             <a href="http://www.twitter.com/" target="_blank">Twitter</a> 
             with all features built from scratch.
           </p>
-          <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+          <a class="btn btn-lg btn-danger" href="<%= signup_path %>">
+            <span class="glyphicon glyphicon-pencil"></span>
+            Sign up now!
+          </a>
         </div>
         <div class="slide-img col-xs-6">
         </div>
       </div>
     </div>      
   </div>
-
+  <!-- Slide 2 -->
   <div class="slide" id="slide-2">
     <div class="container">
       <div class="row">
         <div class="slide-copy col-xs-12">
           <h1>Relevant Features</h1>
           <p>
-            User profiles, microposts with image uploading, and status feeds are among this website's functionalities.
+            User profiles, microposts with images, and personal status feeds included.
+          </p>
+          <p>
+            <a href="#" class="action-link">
+              <span class="glyphicon glyphicon-heart"></span>
+              View features
+            </a>
           </p>
         </div>
       </div>
     </div>      
   </div> 
-
+  <!-- Slide 3 -->
   <div class="slide" id="slide-3">
     <div class="container">
       <div class="row">
-        <div class="slide-copy col-xs-6">
+        <div class="slide-copy col-xs-12">
           <h1>Technologies and Languages</h1>
           <p>
-            MVC software architecture, well-documented Ruby code, and Amazon Web Services behind the scenes.
+            MVC software architecture, well-documented Ruby code, and Amazon 
+            Web Services behind the scenes.
+          </p>
+          <p>
+            <a href="#" class="action-link">
+              <span class="glyphicon glyphicon-star"></span>
+              Learn more
+            </a>
           </p>
         </div>
       </div>
     </div>      
   </div> 
 </div>
-
+<!-- Slider nav section -->
 <div class="slider-nav">
   <a href="#" class="arrow-prev"></a>
   <ul class="slider-dots">
@@ -57,6 +74,4 @@
   </ul>
   <a href="#" class="arrow-next"></a>
 </div> 
-<!--
-<%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org', target: "_blank" %>
--->
+<!-- -->
