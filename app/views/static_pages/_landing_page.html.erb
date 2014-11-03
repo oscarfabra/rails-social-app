@@ -1,4 +1,4 @@
-<% provide(:title, "Ruby 2 and Rails 4 Web App" ) %>
+<% provide(:title, "Home" ) %>
 
 <!-- Slider Section -->
 <div class="slider">
@@ -34,7 +34,7 @@
             User profiles, microposts with images, and personal status feeds included.
           </p>
           <p>
-            <a href="#" class="action-link">
+            <a href="<%= about_path %>" class="action-link">
               <span class="glyphicon glyphicon-heart"></span>
               View features
             </a>
@@ -54,7 +54,7 @@
             Web Services behind the scenes.
           </p>
           <p>
-            <a href="#" class="action-link">
+            <a href="<%= about_path %>" class="action-link">
               <span class="glyphicon glyphicon-star"></span>
               Learn more
             </a>
@@ -74,4 +74,57 @@
   </ul>
   <a href="#" class="arrow-next"></a>
 </div> 
-<!-- -->
+<!-- Features section -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 center">
+      <h1>A Social App</h1>
+      <p>
+        These are some of the features of this sample social networking app 
+        built with Ruby 2 and Rails 4.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 picture-left">
+      <div class="thumbnail" id="feature-1">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2>Ruby on Rails Backend</h2>
+      <p>
+        This website benefits from Rails principles such as convention over
+        configuration, don't repeat yourself (DRY) and the REST architectural
+        style for structuring web applications.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Extensible Features</h2>
+      <p>
+        Built upon the programmer-friendly Ruby language plus some basic Ruby 
+        gems, it provides an extensible and maintainable framework for developing web
+        applications.
+      </p>
+    </div>
+    <div class="col-md-6 picture-right">
+      <div class="thumbnail" id="feature-2">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 picture-left">
+      <div class="thumbnail" id="feature-3">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2>Secure and Robust Application</h2>
+      <p>
+        Deployed to Heroku using SSL, SendGrid for sending e-mails, and Amazon
+        Web Services for cloud storage, it is as robust as any industrial-scale
+        web application should be.
+      </p>
+    </div>
+  </div>
+</div>
