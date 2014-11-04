@@ -85,7 +85,7 @@ h2
 {
 	font-size: 1.5em;
 	letter-spacing: -1px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	text-align: left;
 	font-weight: normal;
 	color: $gray;
@@ -94,6 +94,7 @@ h2
 h3
 {
 	font-family: 'Arvo', sans-serif;
+	margin-bottom: 20px;
 }
 
 p
@@ -101,6 +102,7 @@ p
 	font-size: 1.1em;
 	line-height: 1.7em;
 	color: $gray-light;
+	margin-bottom: 20px;
 }
 
 ul
@@ -206,7 +208,7 @@ footer
 }
 
 /*-------------------------------------------------------------
- *  CUSTOMIZES THE LANDING PAGE
+ *  CUSTOMIZES THE SLIDER
  *-----------------------------------------------------------*/
 
 .slider
@@ -238,7 +240,7 @@ footer
 
 #slide-1
 {
-	padding-top: 130px;
+	padding-top: 110px;
 	padding-left: 20px;
 	display: inline-block;
 	background-image: url('/assets/landing-1.png');
@@ -254,7 +256,7 @@ footer
 }
 #slide-2
 {
-	padding-top: 200px;
+	padding-top: 180px;
 	background-image: url('/assets/landing-2.png');
 	h1
 	{
@@ -277,7 +279,7 @@ footer
 #slide-3
 {
 	color: white;
-	padding-top: 125px;
+	padding-top: 105px;
 	background-image: url('/assets/landing-3.png');
 	text-shadow: 1px 1px 1px #555;
 	h1
@@ -345,6 +347,104 @@ footer
 	}
 }
 
+/*-------------------------------------------------------------
+ *  CUSTOMIZES THE FEATURES SECTION
+ *-----------------------------------------------------------*/
+
+.row-feature
+{
+	padding-bottom: 15px;
+	.thumbnail
+	{
+		text-align: center;
+		width: 553px;
+		height: 316px;
+		background-color: white;
+		padding: 5px;
+		margin-top: 10px;
+	}
+}
+
+#feature-1
+{
+	width: 540px;
+	height: 304px;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	background-image: url('/assets/feature-1.png');
+}
+
+#feature-2
+{
+	width: 540px;
+	height: 304px;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	background-image: url('/assets/feature-2.png');
+}
+
+#feature-3
+{
+	width: 540px;
+	height: 304px;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	background-image: url('/assets/feature-3.png');
+}
+
+/*-------------------------------------------------------------
+ *  CUSTOMIZES THE ABOUT SECTION
+ *-----------------------------------------------------------*/
+
+.features
+{
+	list-style: none;
+	padding: 0;
+	h2
+	{
+		text-align: center;
+	}/*
+	ul
+	{
+		padding-left: 0;
+		list-style-type: none;
+	}*/
+	li:before
+	{
+	  content: '✔';   
+	  margin-left: -1em; margin-right: .100em;
+	}
+	ul
+	{
+	   padding-left: 20px;
+	   text-indent: 2px;
+	   list-style: none;
+	   list-style-position: outside;
+	}
+}
+
+#about-1
+{
+	width: 540px;
+	height: 304px;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	background-image: url('/assets/about-1.png');
+}
+
+#about-2
+{
+	width: 540px;
+	height: 304px;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	background-image: url('/assets/about-2.png');
+}
 
 /*-------------------------------------------------------------
  *  CUSTOMIZES THE USER PROFILE'S SIDEBAR
