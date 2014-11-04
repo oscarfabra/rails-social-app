@@ -60,6 +60,8 @@ textarea
 	p
 	{
 		color: $gray-light;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
 	}
 }
 
@@ -132,9 +134,10 @@ a
 	background-color: $gray-lighter;
 	text-transform: uppercase;
 	border-bottom: 1px solid #ddd;
+	opacity: 0.7;
 	a
 	{
-		color: $gray;
+		color: $gray-darker;
 		text-decoration: none;
 		&:hover
 		{
@@ -149,7 +152,7 @@ a
 		margin-right: 10px;
 		margin-left: 10px;
 		font-size: 1.7em;
-		color: $gray;
+		color: $gray-darker;
 		font-family: 'Arvo', sans-serif;
 		letter-spacing: -1px;
 		padding-top: 9px;
@@ -159,7 +162,6 @@ a
 			text-decoration: none;		
 		}
 	}
-
 }
 
 /*-------------------------------------------------------------
@@ -215,8 +217,6 @@ footer
 {
 	height: 550px !important;
 	width: 100% !important;
-	/*background: transparent url('/assets/feature-gradient.png') 
-		center center no-repeat;*/
 }
 
 .slide
@@ -351,18 +351,28 @@ footer
  *  CUSTOMIZES THE FEATURES SECTION
  *-----------------------------------------------------------*/
 
-.row-feature
+.feature
 {
+	padding-top: 25px;
 	padding-bottom: 15px;
-	.thumbnail
-	{
-		text-align: center;
-		width: 553px;
-		height: 316px;
-		background-color: white;
-		padding: 5px;
-		margin-top: 10px;
-	}
+	width: 100% !important;
+	background: transparent url('/assets/feature-gradient.png') 
+		center bottom repeat-x;
+	border-bottom: 1px solid $gray-lighter;
+	display: block;
+	margin: 0;
+	top: 0;
+	left: 0;
+}
+
+.thumbnail
+{
+	text-align: center;
+	width: 553px;
+	height: 316px;
+	background-color: white;
+	padding: 5px;
+	margin-top: 10px;
 }
 
 #feature-1
@@ -399,19 +409,14 @@ footer
  *  CUSTOMIZES THE ABOUT SECTION
  *-----------------------------------------------------------*/
 
-.features
+.features-list
 {
 	list-style: none;
 	padding: 0;
 	h2
 	{
 		text-align: center;
-	}/*
-	ul
-	{
-		padding-left: 0;
-		list-style-type: none;
-	}*/
+	}
 	li:before
 	{
 	  content: '✔';   
