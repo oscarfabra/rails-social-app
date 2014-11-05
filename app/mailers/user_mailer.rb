@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "noreply@example.com"
+  default from: "noreply@herokuapp.com"
 
   def account_activation(user)
     # Create an instance variable for use in the view

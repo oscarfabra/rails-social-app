@@ -49,6 +49,10 @@ gem 'fog',  '1.23.0'
 gem 'will_paginate',   '3.0.7'
 gem 'bootstrap-will_paginate',  '0.0.10'
 
+# Contact form
+gem 'mail_form', '~> 1.5.0.rc'
+gem 'simple_form', '~> 3.0.0.rc'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

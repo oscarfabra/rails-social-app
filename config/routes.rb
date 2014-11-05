@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root              'static_pages#home'
   get     'help'    =>  'static_pages#help'
   get     'about'   =>  'static_pages#about'
-  get     'contact' =>  'static_pages#contact'
+  get     'contact' =>  'contacts#new'
   get     'signup'  =>  'users#new'
 
   # Routes for sessions
@@ -30,6 +30,9 @@ Rails.application.routes.draw do
 
   # Routes for the relationships resource
   resources :relationships, only: [:create, :destroy]
+
+  # Routes for the contact form
+  resources :contacts, only: [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
