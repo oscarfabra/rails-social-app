@@ -40,7 +40,7 @@ html
 
 body
 {
-	min-width: 1040px !important;
+	min-width: 540px !important;
 	overflow-x: hidden; 
   overflow-y: auto;
 	font-family: Arial, Helvetica, sans-serif;
@@ -191,7 +191,7 @@ a
 	{
 		float: left;
 		margin-right: 10px;
-		margin-left: 0px;
+		margin-left: 10px;
 		font-size: 1.7em;
 		color: $gray-darker;
 		font-family: 'Arvo', sans-serif;
@@ -219,7 +219,7 @@ footer
 	a
 	{
 		color: $gray;
-		&:hover { color: $gray-darker; }
+		&:hover { color: darkred; }
 	}
 	small
 	{
@@ -295,6 +295,7 @@ footer
 	{
 		display: inline-block;
 		margin-top: 5px;
+		font-size: 1.1em;
 	}
 }
 #slide-2
@@ -398,17 +399,25 @@ footer
 {
 	position: relative;
 	clear: both;
-	padding-top: 35px;
-	padding-bottom: 30px;
-	margin-left: -1000px;
-	margin-right: -1000px;
-	background: transparent url('/assets/feature-gradient.png') 
-		center center no-repeat;
 	border-bottom: 1px solid $gray-lighter;
 	background-size: cover;
 	display: block;
 	vertical-align: baseline;
 	min-width: 100% !important;
+	.container
+	{
+		margin-top: 20px;
+		margin-bottom: 15px;
+	}
+}
+
+.feature-back
+{
+	position: relative;
+	background: transparent url('/assets/feature-gradient.png') 
+		center bottom no-repeat;
+	margin: 0 -500%;
+  padding: 1.5em 500%;
 }
 
 .content-left
@@ -430,7 +439,7 @@ footer
 .thumbnail
 {
 	text-align: center;
-	width: 553px;
+	width: 533px;
 	height: 316px;
 	background-color: white;
 	padding: 5px;
@@ -439,7 +448,7 @@ footer
 
 #feature-1
 {
-	width: 540px;
+	width: 520px;
 	height: 304px;
 	display: block;
 	margin: 0px;
@@ -449,7 +458,7 @@ footer
 
 #feature-2
 {
-	width: 540px;
+	width: 520px;
 	height: 304px;
 	display: block;
 	margin: 0px;
@@ -459,7 +468,7 @@ footer
 
 #feature-3
 {
-	width: 540px;
+	width: 520px;
 	height: 304px;
 	display: block;
 	margin: 0px;
@@ -495,7 +504,7 @@ footer
 
 #about-1
 {
-	width: 540px;
+	width: 520px;
 	height: 304px;
 	display: block;
 	margin: 0px;
@@ -505,7 +514,7 @@ footer
 
 #about-2
 {
-	width: 540px;
+	width: 520px;
 	height: 304px;
 	display: block;
 	margin: 0px;
@@ -633,6 +642,7 @@ input
 
 #error_explanation
 {
+	font-size: 0.8em;
 	color: red;
 	ul
 	{
