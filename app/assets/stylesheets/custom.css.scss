@@ -40,6 +40,9 @@ html
 
 body
 {
+	min-width: 1040px !important;
+	overflow-x: hidden; 
+  overflow-y: auto;
 	font-family: Arial, Helvetica, sans-serif;
 	padding-top: 60px;
 }
@@ -49,8 +52,21 @@ section
 	overflow: auto;
 }
 
+form
+{
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+
+label
+{
+	padding-top: 10px;
+}
+
 textarea
 {
+	font-size: 0.8em;
+	padding-left: 3px;
 	resize: vertical;
 }
 
@@ -107,6 +123,31 @@ p
 	margin-bottom: 20px;
 }
 
+#p-below-form
+{
+	padding-bottom: 30px;
+}
+
+.btn-submit
+{
+	margin-bottom: 30px;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.btn::-webkit-scrollbar { 
+    display: none; 
+}
+
+.btn
+{
+	overflow-y: hidden;
+	display: block;
+	font-weight: bold;
+	line-height: 1.4em;
+	margin-bottom: 30px;
+}
+
 ul
 {
 	font-size: 1.1em;
@@ -150,7 +191,7 @@ a
 	{
 		float: left;
 		margin-right: 10px;
-		margin-left: 10px;
+		margin-left: 0px;
 		font-size: 1.7em;
 		color: $gray-darker;
 		font-family: 'Arvo', sans-serif;
@@ -170,9 +211,10 @@ a
 
 footer
 {
-	margin-top: 45px;
-	padding-top: 5px;
-	border-top: 1px solid #eaeaea;
+	margin-top: -1px;
+	padding-top: 20px;
+	margin-bottom: 90px;
+	border-top: 1px solid #ddd;
 	color: $gray-light;
 	a
 	{
@@ -251,7 +293,8 @@ footer
 	}
 	.btn
 	{
-		margin-top: 20px;
+		display: inline-block;
+		margin-top: 5px;
 	}
 }
 #slide-2
@@ -353,16 +396,35 @@ footer
 
 .feature
 {
-	padding-top: 25px;
-	padding-bottom: 15px;
-	width: 100% !important;
+	position: relative;
+	clear: both;
+	padding-top: 35px;
+	padding-bottom: 30px;
+	margin-left: -1000px;
+	margin-right: -1000px;
 	background: transparent url('/assets/feature-gradient.png') 
-		center bottom repeat-x;
+		center center no-repeat;
 	border-bottom: 1px solid $gray-lighter;
+	background-size: cover;
 	display: block;
-	margin: 0;
-	top: 0;
-	left: 0;
+	vertical-align: baseline;
+	min-width: 100% !important;
+}
+
+.content-left
+{
+	float: left;
+	margin: 0px;
+	display: inline-block;
+	max-width: 570px;
+}
+
+.content-right
+{
+	float: right;
+	margin: 0px;
+	display: inline-block;
+	max-width: 570px;
 }
 
 .thumbnail
@@ -481,7 +543,7 @@ aside
 			font-size: 1.4em;
 			text-align: left;
 			letter-spacing: -1px;
-			margin-bottom: 3px;
+			margin-bottom: 7px;
 			margin-top: 0px;
 		}
 	}
@@ -496,6 +558,7 @@ aside
 .gravatar_edit
 {
 	margin-top: 15px;
+	margin-bottom: 100px;
 }
 
 .stats
@@ -678,6 +741,7 @@ aside
 
 span.picture
 {
+	font-size: 0.8em;
 	margin-top: 10px;
 	input
 	{

@@ -7,7 +7,6 @@
     <p>
       Please leave your message in this form and you will receive an answer soon.
     </p>
-    <!--
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :name %>
@@ -21,7 +20,7 @@
         <%= f.text_area :message, placeholder: "Your message must be at least 20 characters long..." %>
       </div>
 
-      <%= f.submit "Send", class: "btn btn-primary" %>
-    <% end %>-->
+      <%= f.submit "Send", class: "btn btn-danger btn-submit" %><br/>
+    <% end %>
   </div>
 </div>
