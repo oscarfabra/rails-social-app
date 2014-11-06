@@ -1,8 +1,8 @@
 class UserMailer < ActionMailer::Base
   default from: "noreply@herokuapp.com"
 
+  # Create an instance variable for use in the view
   def account_activation(user)
-    # Create an instance variable for use in the view
     @user = user
     mail to: user.email, subject: "Activate your account"
   end

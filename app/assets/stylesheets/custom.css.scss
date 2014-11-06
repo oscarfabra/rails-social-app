@@ -560,6 +560,22 @@ footer
 	text-align: left;
 } 
 
+#contact_message
+{
+	font-size: 1em;
+}
+
+.help-inline
+{
+	font-size: 0.8em;
+	color: red;
+	ul
+	{
+		color: red;
+		margin: 0 0 30px 0;
+	}
+}
+
 /*-------------------------------------------------------------
  *  CUSTOMIZES THE USER PROFILE'S SIDEBAR
  *-----------------------------------------------------------*/
