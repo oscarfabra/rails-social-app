@@ -1,6 +1,37 @@
 <% provide(:title, "Help") %>
-<h1>Help</h1>
-<p>
-	This is a sample help page. It should contain frequently asked questions 
-  and/or a help desk functionality. For further assistance please contact <a href="mailto:oscarfabra@gmail.com">Oscar Fabra</a>.
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Help</h1>
+    <p class="p_static_page">
+      This is a sample help page. It could contain frequently asked questions 
+      (FAQ's) and/or a help desk functionality. For further assistance please 
+      visit the <%= link_to "Contact page", contact_path %>.
+    </p>
+  </div>
+</div>
+<div class="feature_static_page feature-back">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="thumbnail">
+          <div id="help-1" title="Helpful links for developers"></div>
+        </div>
+      </div>
+      <div class="col-md-6 center links-list">
+        <h2>
+          <span class="glyphicon glyphicon-check"></span>&nbsp;
+          Helpful links for developers
+        </h2>
+        <ul>
+          <li><%= link_to "Ruby on Rails Guides", "http://guides.rubyonrails.org/" %></li>
+          <li><%= link_to "APIdock", "http://apidock.com/" %></li>
+          <li><%= link_to "Ruby doc", "http://www.ruby-doc.org/core-2.1.4/" %></li>
+          <li><%= link_to "Heroku Dev Center", "https://devcenter.heroku.com/" %></li>
+          <li><%= link_to "Bootstrap", "http://getbootstrap.com/" %></li>
+          <li><%= link_to "Ruby on Rails Screencasts", "http://railscasts.com/" %></li>
+          <li><%= link_to "Stack Overflow", "http://stackoverflow.com/" %></li>
+        </ul>
+      </div>
+    </div>  
+  </div>
+</div>

@@ -1,5 +1,40 @@
 <% provide(:title, "Contact") %>
-<h1>Contact</h1>
-<p>
-  You may reach Oscar Fabra by email at <a href="mailto:oscarfabra@gmail.com">oscarfabra@gmail.com</a> or visit his personal website at <a href="http://oscarfabra.com" target="_blank">oscarfabra.com</a>. You can also find him at <a href="http://twitter.com/oscarfabra" target="_blank">Twitter</a>, <a href="http://facebook.com/oscarfabra" target="_blank">Facebook</a>, <a href="http://linkedin.com/in/oscarfabra" target="_blank">LinkedIn</a> or <a href="http://plus.google.com/+oscarfabra" target="_blank">Google+</a>.
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Contact</h1>
+    <p class="p_static_page">
+      This is a sample contact page. It could contain a contact form and
+      additional information about you or your business such as service hours
+      and location.
+    </p>
+  </div>
+</div>
+<div class="feature_static_page feature-back">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="thumbnail">
+          <div id="contact-1" title="Contact Info"></div>
+        </div>
+      </div>
+      <div class="col-md-6 center links-list">
+        <h2>
+          <span class="glyphicon glyphicon-earphone"></span>&nbsp;
+          Contact Info
+        </h2>
+        <p>
+          You may reach this website's developer, Oscar Fabra, by these means:
+        </p><br/>
+        <ul>
+          <li><%= link_to "E-mail", "mailto:oscarfabra@gmail.com" %></li>
+          <li><%= link_to "Personal Website", "http://oscarfabra.com/" %></li>
+          <li><%= link_to "GitHub", "http://github.com/oscarfabra" %></li>
+          <li><%= link_to "Twitter", "http://www.twitter.com/oscarfabra" %></li>
+          <li><%= link_to "Facebook", "http://facebook.com/oscarfabra" %></li>
+          <li><%= link_to "LinkedIn", "http://linkedin.com/in/oscarfabra" %></li>
+          <li><%= link_to "Google+", "http://plus.google.com/+oscarfabra" %></li>
+        </ul>
+      </div>
+    </div>  
+  </div>
+</div>

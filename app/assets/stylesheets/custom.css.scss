@@ -95,7 +95,7 @@ h1
 	font-family: 'Arvo', sans-serif;
 	font-size: 3em;
 	letter-spacing: -2px;
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 	text-align: center;
 }
 
@@ -164,6 +164,13 @@ a
 		color: darkred;
 		text-decoration: none;
 	}
+}
+
+.p_static_page
+{
+	margin-left: 10px;
+	margin-top: 30px;
+	margin-bottom: 0px;
 }
 
 /*-------------------------------------------------------------
@@ -395,6 +402,23 @@ footer
  *  CUSTOMIZES THE FEATURES SECTION
  *-----------------------------------------------------------*/
 
+
+.feature_static_page
+{
+	position: relative;
+	clear: both;
+	border-bottom: 1px solid $gray-lighter;
+	background-size: cover;
+	display: block;
+	vertical-align: baseline;
+	min-width: 100% !important;
+	.container
+	{
+		margin-top: 5px;
+		margin-bottom: 15px;
+	}
+}
+
 .feature
 {
 	position: relative;
@@ -520,6 +544,53 @@ footer
 	margin: 0px;
 	padding: 0px;
 	background-image: url('/assets/about-2.png');
+}
+
+/*-------------------------------------------------------------
+ *  CUSTOMIZES THE HELP AND CONTACT SECTIONS
+ *-----------------------------------------------------------*/
+
+.links-list
+{
+	list-style: none;
+	padding: 0;
+	h2
+	{
+		text-align: center;
+	}
+	li:before
+	{
+	  content: '✎';   
+	  margin-left: -1em; margin-right: .100em;
+	  color: red;
+	}
+	ul
+	{
+	   padding-left: 20px;
+	   text-indent: 2px;
+	   list-style: none;
+	   list-style-position: outside;
+	}
+}
+
+#help-1
+{
+	width: 520px;
+	height: 304px;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	background-image: url('/assets/help-1.png');
+}
+
+#contact-1
+{
+	width: 520px;
+	height: 304px;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	background-image: url('/assets/contact-1.png');
 }
 
 /*-------------------------------------------------------------
