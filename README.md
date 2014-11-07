@@ -1,6 +1,3 @@
-# Ruby on Rails Tutorial: sample application
+# Rails Social Networking App
 
-This is the sample application for the
-[*Ruby on Rails Tutorial:
-Learn Web Development with Rails*](http://www.railstutorial.org/)
-by [Michael Hartl](http://www.michaelhartl.com/).
+This is a sample social networking site developed with Ruby 2 and Rails 4. It replaces an earlier version of Twitter with all features built from scratch.
